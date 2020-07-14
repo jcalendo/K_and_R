@@ -11,9 +11,10 @@ int main()
         if (c == ' ' || c == '\n' || c == '\t')
         {
             putchar('\n');
-        } else
+        }
+        else
         {
             putchar(c);
-        }        
+        }   
     }
 }
