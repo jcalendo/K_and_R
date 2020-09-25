@@ -1,20 +1,22 @@
 #include <stdio.h>
 
-#define MAX_TERMS 1000
+#define MAX_TERMS 10
 
 
-// Approximate e using infinite series up to epsilon precision
+// Write a program that approximates e by computing the infinite series
+// Exit when the current term is less than the user supplied epsilon
 int main(void)
 {
-  int d;
-  float denom, epsilon;
-  float e = 1.0;
+  int d, terms;
+  float denom, epsilon, e = 1.0;
 
-  printf("Enter a value for epsilon (e.g. 0.0001): ");
+  printf("Enter an the tolerance (e.g. 0.0001): ");
   scanf("%f", &epsilon);
 
+  terms = 0;
   for (int i = 1; i <= MAX_TERMS; i++)
   {
+    terms += 1;
     if (i == 1)
     {
       e += 1.0f;
@@ -28,15 +30,14 @@ int main(void)
         d--;
       }
 
-      if (e - (e * (1.0 / denom)) < epsilon)
-      {
+      if (((e + (1.0f / denom)) - e) < epsilon)
         break;
-      } else
-      {
-        e += (1.0 / denom);
-      }
+
+      e += (1.0f / denom);
     }
   }
-  printf("%.6f\n", e);
+  printf("Final value of approximate e: %.6f\n", e);
+  printf("Number of terms used: %d\n", terms);
+
   return 0;
 }
